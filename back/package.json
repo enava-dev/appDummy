@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server/server.js",
+    "monitor": "nodemon src/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gcloud app deploy"
   },
   "repository": {
     "type": "git",
