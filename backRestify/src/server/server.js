@@ -2,7 +2,7 @@
 
 var restify = require('restify');
 var RestifyRouter = require('restify-routing');
-var rootRouter = require('./routes/root.router');
+var rootRouter = require('./routes/rootRouter');
 var listRestEndpoints = require('./listRestEndpoints');
 
 var server = restify.createServer({
@@ -33,6 +33,12 @@ server.use(restify.bodyParser());
 // });
 
 
+
+
+
+
+
+
 // Auth Middleware - This will check if the token is valid
 // Only the requests that start with /api/v1/* will be checked for the token.
 // Any URL's that do not follow the below pattern should be avoided unless you 
@@ -56,7 +62,7 @@ server.listen(8080, function() {
   console.log('server.acceptable:', server.acceptable);
   console.log(server.router.mounts);
 
-  listRestEndpoints(server.router.mounts);
+  // listRestEndpoints(server.router.mounts);
 
 });
 

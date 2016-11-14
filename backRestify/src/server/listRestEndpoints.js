@@ -10,6 +10,7 @@ console.log('\nAPI for this service \n');
 	for (var key in routes) {
 	  if (routes.hasOwnProperty(key)) {
 	    var val = routes[key];
+			console.log('**** val:', val);
 	    var _o = {};
 	    _o[val.method]  = [val.name, val.spec.path ]; 
 		table.push(_o);

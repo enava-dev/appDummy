@@ -1,8 +1,8 @@
 'use strict';
 
 var RestifyRouter = require('restify-routing'),
-    internalApiRouter = require('./internalApi.router'),
-    publicApiRouter = require('./publicApi.router');
+    internalApiRouter = require('./internalApi/internalApiRouter'),
+    publicApiRouter = require('./publicApi/publicApiRouter');
 
 var rootRouter = new RestifyRouter();
 
