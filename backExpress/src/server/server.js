@@ -4,7 +4,8 @@ var express = require('express'),
     path = require('path'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
-    routes = require('./routes/routes');
+    routes = require('./routes/routes'),
+    listRestEndpoints = require('./listRestEndpoints');
 
 var app = express();
 
@@ -39,8 +40,35 @@ app.use('/api/v1/', routes);
 // app.use('/api/private/v1');
 
 
+app.get('/test/item', function(req, res){
+  console.log('test/item');
+  res.end('test/item');
+});
+
+
 // Start the server
 app.set('port', process.env.PORT || 8080);
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
+
+
+
+   console.log(server.name, 'listening at', server.url);
+  // console.log('server:', server);
+  console.log('server.domian:', server.domain);
+  console.log('server.name:', server.name);
+  // console.log('server.router:', server.router);
+  console.log('server.routes:', server.routes);
+  console.log('server.acceptable:', server.acceptable);
+  
+
+  listRestEndpoints(app._router.stack);
+  listRestEndpoints(routes.stack);
+
+  
+
+  // console.log(app._router.stack);
+  // console.log('*****************');
+  // console.log(routes.stack);
+
 });

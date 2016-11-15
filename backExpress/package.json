@@ -21,6 +21,7 @@
   "homepage": "https://github.com/enava-dev/appDummy#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cli-table": "^0.3.1",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.1.9",
     "morgan": "^1.7.0"
