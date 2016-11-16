@@ -5,7 +5,10 @@ var express = require('express'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
     routes = require('./routes/routes'),
-    listRestEndpoints = require('./listRestEndpoints');
+    rootRouter = require('./routes/rootRouter'),
+    listEndpoints = require('./listEndpoints'),
+    internalApiRouter = require('./routes/internalApi/internalApiRouter'),
+    publicApiRouter = require('./routes/publicApi/publicApiRouter');
 
 var app = express();
 
@@ -34,16 +37,25 @@ app.all('/*', function(req, res, next) {
 // app.all('/api/v1/*', [require('./middlewares/validateRequest')]);
 
 
+
+
 // Load all the routes
 // app.use('/', routes);
-app.use('/api/v1/', routes);
+// app.use('/routes/test', routes);
+// app.use('/api/v1/', routes);
 // app.use('/api/private/v1');
+// app.use('/', rootRouter);
 
 
-app.get('/test/item', function(req, res){
-  console.log('test/item');
-  res.end('test/item');
-});
+// app.use(rootRouter);
+app.use(internalApiRouter);
+app.use(publicApiRouter);
+
+
+// app.get('/app/item', function(req, res){
+//   console.log('app/item');
+//   res.end('app/item');
+// });
 
 
 // Start the server
@@ -60,15 +72,8 @@ var server = app.listen(app.get('port'), function() {
   // console.log('server.router:', server.router);
   console.log('server.routes:', server.routes);
   console.log('server.acceptable:', server.acceptable);
-  
 
-  listRestEndpoints(app._router.stack);
-  listRestEndpoints(routes.stack);
+   listEndpoints(app);
 
-  
-
-  // console.log(app._router.stack);
-  // console.log('*****************');
-  // console.log(routes.stack);
 
 });
